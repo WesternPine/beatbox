@@ -9,9 +9,135 @@
     <version>1.0.0.0-alpha</version>
 
     <properties>
+        <!--        General Properties-->
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--        Plugins/Building-->
+        <compilerVersion>3.6.1</compilerVersion>
+        <shadeVersion>3.5.3</shadeVersion>
+
+        <!--        Dependencies & Other Plugins-->
+        <daggerVersion>2.51.1</daggerVersion>
+        <jdaVersion>5.0.0-beta.24</jdaVersion>
+        <gsonVersion>2.10.1</gsonVersion>
+        <snakeYamlVersion>2.1</snakeYamlVersion>
     </properties>
+
+    <repositories>
+        <!--        JitPack-->
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
+        <!--        SnakeYaml-->
+        <repository>
+            <id>Sonatype-public</id>
+            <name>SnakeYAML repository</name>
+            <url>http://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+
+        <!--        LavaLink Client-->
+        <repository>
+            <id>ll-releases</id>
+            <name>Lavalink Releases</name>
+            <url>https://maven.lavalink.dev/releases</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.dagger</groupId>
+            <artifactId>dagger</artifactId>
+            <version>${daggerVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dv8tion</groupId>
+            <artifactId>JDA</artifactId>
+            <version>${jdaVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gsonVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeYamlVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>5.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.17.2</version>
+        </dependency>
+    </dependencies>
+
+    <packaging>jar</packaging>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compilerVersion}</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.dagger</groupId>
+                            <artifactId>dagger-compiler</artifactId>
+                            <version>${daggerVersion}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${shadeVersion}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>junit:junit</exclude>
+                                    <exclude>jmock:*</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>dev.westernpine.beatbox.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+        <finalName>${project.name}</finalName>
+    </build>
 
 </project>
