@@ -1,5 +1,7 @@
 # beatbox
 
+[![JitPack](https://jitpack.io/v/WesternPine/beatbox.svg)](https://jitpack.io/#WesternPine/beatbox)
+
 Beatbox is a Discord-based music app where you can enjoy music together with friends without ads.
 Its inspiration was derived from another project I did during covid lockdowns (Pulse Bot) where my only escape was the
 extent of my creativity. Today, it serves as a passion project to explore new technologies and further refine my skills
