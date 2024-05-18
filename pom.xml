@@ -10,13 +10,13 @@
 
     <properties>
         <!--        General Properties-->
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source> <!-- Java Version -->
+        <maven.compiler.target>21</maven.compiler.target> <!-- Java Version -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!--        Plugins/Building-->
         <compilerVersion>3.6.1</compilerVersion>
-        <shadeVersion>3.5.3</shadeVersion>
+        <shadeVersion>3.2.4</shadeVersion> <!-- Should be compatible with Jit. -->
 
         <!--        Dependencies & Other Plugins-->
         <daggerVersion>2.51.1</daggerVersion>
