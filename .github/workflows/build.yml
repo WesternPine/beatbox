@@ -11,7 +11,5 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build Project
-        run: ls
-      - run: cd beatbox
-      - run: mvn clean install
+        run: mvn clean install
         
