@@ -4,6 +4,7 @@ jobs:
   SetUpEnvironment:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Java and Maven
-      - run: sudo apt install openjdk-21-jdk
-      - run: sudo apt install maven -y
+      - name: Install Java
+        run: sudo apt install openjdk-21-jdk
+      - name: Install Maven
+        run: sudo apt install maven -y
