@@ -4,7 +4,7 @@ jobs:
   BuildProject:
     runs-on: ubuntu-latest
     steps:
-      - run: java --version
+      - run: sudo apt remove java -y
       - name: Install Java
         run: sudo apt install openjdk-21-jdk
       - name: Install Maven
