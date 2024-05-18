@@ -11,6 +11,7 @@ but it does have some hidden gems for you developers out there.
 ## Specs
 
 - JVM: OpenJDK-21
+- Build System: Maven
 
 ## Credits
 - [WesternPine (Myself) - Events](https://github.com/WesternPine/Events)
