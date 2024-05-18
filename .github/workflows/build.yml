@@ -1,10 +1,16 @@
 name: GitHub Build
 on: [push]
 jobs:
-  SetUpEnvironment:
+  BuildProject:
     runs-on: ubuntu-latest
     steps:
       - name: Install Java
         run: sudo apt install openjdk-21-jdk
       - name: Install Maven
         run: sudo apt install maven -y
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Build Project
+        run: cd beatbox
+      - run: mvn clean install
+        
