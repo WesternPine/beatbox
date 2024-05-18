@@ -8,7 +8,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '21'
-          distribution: 'open-jdk'
+          distribution: 'adopt-openj9'
           cache: 'maven'
       - name: Install Java
         run: sudo apt install openjdk-21-jdk
