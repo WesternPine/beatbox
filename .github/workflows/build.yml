@@ -9,7 +9,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt-openj9'
-          cache: 'maven'
       - name: Install Java
         run: sudo apt install openjdk-21-jdk
       - name: Install Maven
