@@ -1,0 +1,9 @@
+name: GitHub Build
+on: [push]
+jobs:
+  SetUpEnvironment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Java and Maven
+      - run: sudo apt install openjdk-21-jdk
+      - run: sudo apt install maven -y
