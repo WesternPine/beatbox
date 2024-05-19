@@ -1,8 +1,10 @@
 package dev.westernpine.beatbox.Utilities.Configuration;
 
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+import org.yaml.snakeyaml.representer.Representer;
 
 import java.io.*;
 
@@ -12,10 +14,14 @@ public class YamlConfigEditor<T> implements IConfigEditor<T>  {
     public final Yaml yaml;
 
     public YamlConfigEditor(Class<T> clazz) {
+        DumperOptions dumperOptions = new DumperOptions();
+        dumperOptions.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        Representer representer = new Representer(dumperOptions);
+        representer.getPropertyUtils().setSkipMissingProperties(true);
         this.clazz = clazz;
         LoaderOptions loaderOptions = new LoaderOptions();
         loaderOptions.setTagInspector(tag -> clazz.getName().equals(tag.getClassName()));
-        yaml = new Yaml(new Constructor(clazz, loaderOptions));
+        yaml = new Yaml(new Constructor(clazz, loaderOptions), representer);
     }
 
     @Override
