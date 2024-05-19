@@ -25,9 +25,13 @@ public class YamlConfigEditor<T> implements IConfigEditor<T>  {
     }
 
     @Override
+    public String dump(Object object) {
+        return this.yaml.dump(object);
+    }
+
+    @Override
     public T read(InputStream inputStream) {
         Object result;
-
         result = yaml.load(inputStream);
         return (T) result;
     }

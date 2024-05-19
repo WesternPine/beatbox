@@ -2,7 +2,7 @@ package dev.westernpine.beatbox.Modules;
 
 import dagger.Module;
 import dagger.Provides;
-import dev.westernpine.beatbox.Configuration.Config;
+import dev.westernpine.beatbox.Configuration.Configuration;
 import dev.westernpine.beatbox.Utilities.Configuration.IConfigEditor;
 import dev.westernpine.beatbox.Utilities.Configuration.YamlConfigEditor;
 
@@ -10,8 +10,8 @@ import dev.westernpine.beatbox.Utilities.Configuration.YamlConfigEditor;
 public class ConfigurationModule {
 
     @Provides
-    IConfigEditor<Config> provideConfigEditor() {
-        return new YamlConfigEditor<Config>(Config.class);
+    IConfigEditor<Configuration> provideConfigEditor() {
+        return new YamlConfigEditor<Configuration>(Configuration.class);
     }
 
 
