@@ -1,8 +1,9 @@
-package dev.westernpine.beatbox.Utilities.Serializer;
+package dev.westernpine.beatbox.Utilities.Serializer.Object.Imp;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import dev.westernpine.beatbox.Utilities.Serializer.Object.IObjectSerializer;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,14 +11,14 @@ import java.util.concurrent.ConcurrentHashMap;
 // All of these are static because all of our kryo instances should have the same registrations,
 // even when kryo isn't thread safe.
 // This design also has some ease of use design where we don't need to manage everything.
-public class KryoSerializer implements ISerializer {
+public class KryoObjectSerializer implements IObjectSerializer {
 
-    public static boolean is(ISerializer serializer) {
-        return serializer instanceof KryoSerializer;
+    public static boolean is(IObjectSerializer serializer) {
+        return serializer instanceof KryoObjectSerializer;
     }
 
-    public static KryoSerializer get(ISerializer serializer) {
-        return (KryoSerializer) serializer;
+    public static KryoObjectSerializer get(IObjectSerializer serializer) {
+        return (KryoObjectSerializer) serializer;
     }
 
 
@@ -27,7 +28,7 @@ public class KryoSerializer implements ISerializer {
 
     private final ThreadLocal<Kryo> threadLocalKryo;
 
-    public KryoSerializer() {
+    public KryoObjectSerializer() {
         this.classes = new ConcurrentHashMap<Class<?>, Integer>();
         this.threadLocalKryo = ThreadLocal.withInitial(() -> {
             Kryo kryo = new Kryo();

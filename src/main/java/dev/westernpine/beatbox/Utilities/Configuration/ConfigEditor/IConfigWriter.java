@@ -1,6 +1,5 @@
-package dev.westernpine.beatbox.Utilities.Configuration;
+package dev.westernpine.beatbox.Utilities.Configuration.ConfigEditor;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 @FunctionalInterface

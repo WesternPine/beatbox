@@ -1,4 +1,4 @@
-package dev.westernpine.beatbox.Configuration;
+package dev.westernpine.beatbox.Models;
 
 public class Configuration {
 

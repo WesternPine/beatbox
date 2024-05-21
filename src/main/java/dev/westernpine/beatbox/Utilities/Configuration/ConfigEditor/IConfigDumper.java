@@ -1,4 +1,4 @@
-package dev.westernpine.beatbox.Utilities.Configuration;
+package dev.westernpine.beatbox.Utilities.Configuration.ConfigEditor;
 
 public interface IConfigDumper {
 

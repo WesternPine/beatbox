@@ -1,26 +1,31 @@
-package dev.westernpine.beatbox.Containers;
+package dev.westernpine.beatbox.Utilities.Configuration.Config.Imp;
 
 import com.google.inject.Inject;
-import dev.westernpine.beatbox.Configuration.Configuration;
-import dev.westernpine.beatbox.Utilities.Configuration.IConfigEditor;
+import dev.westernpine.beatbox.Models.Configuration;
+import dev.westernpine.beatbox.Utilities.Configuration.Config.IConfig;
+import dev.westernpine.beatbox.Utilities.Configuration.ConfigEditor.IConfigEditor;
 import dev.westernpine.beatbox.Utilities.FileUtilities;
 
 import java.io.File;
 import java.io.IOException;
 
-public class ConfigurationContainer {
+public class DefaultConfig implements IConfig {
 
-    public static final String CONFIGFILE = "settings.yml";
+    public static final String CONFIGFILE = "settings.conf";
 
     public IConfigEditor configEditor;
 
     public Configuration configuration;
 
     @Inject
-    public ConfigurationContainer(IConfigEditor configEditor) throws IOException {
+    public DefaultConfig(IConfigEditor configEditor) throws IOException {
         this.configEditor = configEditor;
         this.configuration = new Configuration();
         load();
+    }
+
+    public Configuration get() {
+        return this.configuration;
     }
 
     public File getFile() {

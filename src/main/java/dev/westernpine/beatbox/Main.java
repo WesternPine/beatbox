@@ -2,7 +2,7 @@ package dev.westernpine.beatbox;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import dev.westernpine.beatbox.Containers.ConfigurationContainer;
+import dev.westernpine.beatbox.Utilities.Configuration.Config.IConfig;
 import dev.westernpine.beatbox.Modules.ConfigurationModule;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class Main {
         this.injector = Guice.createInjector(
                 new ConfigurationModule()
         );
-        System.out.println(injector.getInstance(ConfigurationContainer.class).configuration.string);
+        System.out.println(injector.getInstance(IConfig.class).get().string);
     }
 
 }

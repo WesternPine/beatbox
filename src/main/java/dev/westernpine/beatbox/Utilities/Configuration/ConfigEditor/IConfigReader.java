@@ -1,7 +1,6 @@
-package dev.westernpine.beatbox.Utilities.Configuration;
+package dev.westernpine.beatbox.Utilities.Configuration.ConfigEditor;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 
 @FunctionalInterface
 public interface IConfigReader {
