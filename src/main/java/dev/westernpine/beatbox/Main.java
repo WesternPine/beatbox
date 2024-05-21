@@ -5,7 +5,6 @@ import com.google.inject.Injector;
 import dev.westernpine.beatbox.Containers.ConfigurationContainer;
 import dev.westernpine.beatbox.Modules.ConfigurationModule;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Main {
