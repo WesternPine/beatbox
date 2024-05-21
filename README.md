@@ -15,10 +15,14 @@ but it does have some hidden gems for you developers out there.
 
 ## Credits
 - [WesternPine (Myself) - Events](https://github.com/WesternPine/Events)
-- [google - dagger](https://github.com/google/dagger)
+- [google - guice](https://github.com/google/guice)
 - [discord-jda - JDA](https://github.com/discord-jda/JDA)
 - [lavalink-dev - LavaLink](https://github.com/lavalink-devs/Lavalink)
 - [EsotericSoftware - kryo](https://github.com/EsotericSoftware/kryo)
 - [google - gson](https://github.com/google/gson)
 - [jhy - Jsoup](https://github.com/jhy/jsoup)
 - [snakeyaml - snakeyaml](https://github.com/snakeyaml/snakeyaml)
+
+## Features
+
+- Coming Soon!

@@ -4,8 +4,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 @FunctionalInterface
-public interface IConfigReader<T> {
+public interface IConfigReader {
 
-    public T read(InputStream inputStream);
+    public <T> T read(InputStream inputStream);
 
 }

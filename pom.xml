@@ -19,7 +19,8 @@
         <shadeVersion>3.2.4</shadeVersion> <!-- Should be compatible with Jit. -->
 
         <!--        Dependencies & Other Plugins-->
-        <daggerVersion>2.51.1</daggerVersion>
+        <guiceVersion>7.0.0</guiceVersion>
+        <guavaVersion>32.1.0-jre</guavaVersion>
         <jdaVersion>5.0.0-beta.24</jdaVersion>
         <gsonVersion>2.10.1</gsonVersion>
         <snakeYamlVersion>2.1</snakeYamlVersion>
@@ -52,9 +53,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.dagger</groupId>
-            <artifactId>dagger</artifactId>
-            <version>${daggerVersion}</version>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guiceVersion}</version>
+        </dependency>
+        <!--        Required for guice to override its transient dependency with a CVE in it.-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guavaVersion}</version>
         </dependency>
         <dependency>
             <groupId>net.dv8tion</groupId>

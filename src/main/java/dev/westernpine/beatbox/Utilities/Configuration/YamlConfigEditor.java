@@ -7,21 +7,27 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import org.yaml.snakeyaml.representer.Representer;
 
 import java.io.*;
+import java.util.Collections;
 
-public class YamlConfigEditor<T> implements IConfigEditor<T>  {
+public class YamlConfigEditor implements IConfigEditor  {
 
-    public final Class<T> clazz;
     public final Yaml yaml;
 
-    public YamlConfigEditor(Class<T> clazz) {
+    public YamlConfigEditor() {
         DumperOptions dumperOptions = new DumperOptions();
         dumperOptions.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        dumperOptions.setExplicitStart(false);
+        dumperOptions.setExplicitEnd(false);
+        dumperOptions.setTags(Collections.emptyMap());
+
+        // Disable class name tags
         Representer representer = new Representer(dumperOptions);
         representer.getPropertyUtils().setSkipMissingProperties(true);
-        this.clazz = clazz;
+
         LoaderOptions loaderOptions = new LoaderOptions();
-        loaderOptions.setTagInspector(tag -> clazz.getName().equals(tag.getClassName()));
-        yaml = new Yaml(new Constructor(clazz, loaderOptions), representer);
+        loaderOptions.setTagInspector(tag -> true);
+
+        yaml = new Yaml(new Constructor(loaderOptions), representer);
     }
 
     @Override
@@ -30,8 +36,8 @@ public class YamlConfigEditor<T> implements IConfigEditor<T>  {
     }
 
     @Override
-    public T read(InputStream inputStream) {
-        Object result;
+    public <T> T read(InputStream inputStream) {
+        T result;
         result = yaml.load(inputStream);
         return (T) result;
     }

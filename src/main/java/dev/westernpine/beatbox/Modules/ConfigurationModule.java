@@ -1,18 +1,17 @@
 package dev.westernpine.beatbox.Modules;
 
-import dagger.Module;
-import dagger.Provides;
-import dev.westernpine.beatbox.Configuration.Configuration;
+import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
 import dev.westernpine.beatbox.Utilities.Configuration.IConfigEditor;
 import dev.westernpine.beatbox.Utilities.Configuration.YamlConfigEditor;
 
-@Module
-public class ConfigurationModule {
+public class ConfigurationModule extends AbstractModule {
 
-    @Provides
-    IConfigEditor<Configuration> provideConfigEditor() {
-        return new YamlConfigEditor<Configuration>(Configuration.class);
+    @Override
+    public void configure() {
+        // We don't need to provide the "to" in this first case,
+        // but we're still going to as this module will serve as the manifest to what we provide.
+        bind(IConfigEditor.class).to(YamlConfigEditor.class).in(Scopes.SINGLETON);
     }
-
 
 }
