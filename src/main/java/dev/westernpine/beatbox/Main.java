@@ -2,8 +2,15 @@ package dev.westernpine.beatbox;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import dev.westernpine.beatbox.Models.Configuration.Configuration;
 import dev.westernpine.beatbox.Utilities.Configuration.Config.IConfig;
 import dev.westernpine.beatbox.Modules.ConfigurationModule;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.sharding.DefaultShardManager;
+import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
+import net.dv8tion.jda.api.sharding.ShardManager;
 
 import java.io.IOException;
 
@@ -25,7 +32,17 @@ public class Main {
         this.injector = Guice.createInjector(
                 new ConfigurationModule()
         );
-        System.out.println(injector.getInstance(IConfig.class).get().string);
+
+        IConfig config = this.injector.getInstance(IConfig.class);
+        Configuration configuration = config.get();
+
+        if(configuration.configGenerated) {
+            System.out.printf("Configuration generated! (%s)%n", config.getFileName());
+            System.exit(0);
+        }
+
+        JDA jda = JDABuilder.createLight(configuration.discordToken).build();
+        jda.getPresence().setActivity(Activity.customStatus("Coming Soon. o.0"));
     }
 
 }

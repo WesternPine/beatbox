@@ -1,7 +1,7 @@
 package dev.westernpine.beatbox.Utilities.Configuration.Config.Imp;
 
 import com.google.inject.Inject;
-import dev.westernpine.beatbox.Models.Configuration;
+import dev.westernpine.beatbox.Models.Configuration.Configuration;
 import dev.westernpine.beatbox.Utilities.Configuration.Config.IConfig;
 import dev.westernpine.beatbox.Utilities.Configuration.ConfigEditor.IConfigEditor;
 import dev.westernpine.beatbox.Utilities.FileUtilities;
@@ -28,17 +28,24 @@ public class DefaultConfig implements IConfig {
         return this.configuration;
     }
 
+    public String getFileName() {
+        return CONFIGFILE;
+    }
+
     public File getFile() {
         return new File(CONFIGFILE);
     }
 
     public void load() throws IOException {
         File file = getFile();
+        boolean configGenerated = false;
         if(!file.exists()) {
             this.configuration = new Configuration();
             save();
+            configGenerated = true;
         }
         this.configuration = FileUtilities.handleInputStream(file, this.configEditor::read);
+        this.configuration.configGenerated = configGenerated;
     }
 
     public void save() throws IOException {

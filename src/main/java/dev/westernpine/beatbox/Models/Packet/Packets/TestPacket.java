@@ -1,4 +1,4 @@
-package dev.westernpine.beatbox.Packet.Packets;
+package dev.westernpine.beatbox.Models.Packet.Packets;
 
 public class TestPacket {
 

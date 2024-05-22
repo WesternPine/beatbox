@@ -1,3 +1,3 @@
-package dev.westernpine.beatbox.Packet;
+package dev.westernpine.beatbox.Models.Packet;
 
 public record Packet(String name, Object packet) {}
