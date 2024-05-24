@@ -13,6 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
 // This design also has some ease of use design where we don't need to manage everything.
 public class KryoObjectSerializer implements IBinarySerializer {
 
+
+    // Utilizing regular concurrent hash map for thread saftey, and because while kryo class ids are
+    // dependent on the order they were registered, since we're specifying the ID, we can just register it with the ID.
+    private final Map<Class<?>, Integer> classes;
+
+    private final ThreadLocal<Kryo> threadLocalKryo;
+
     public static boolean is(IBinarySerializer serializer) {
         return serializer instanceof KryoObjectSerializer;
     }
@@ -20,13 +27,6 @@ public class KryoObjectSerializer implements IBinarySerializer {
     public static KryoObjectSerializer get(IBinarySerializer serializer) {
         return (KryoObjectSerializer) serializer;
     }
-
-
-    // Utilizing regular concurrent hash map for thread saftey, and because while kryo class ids are
-    // dependent on the order they were registered, since we're specifying the ID, we can just register it with the ID.
-    private final Map<Class<?>, Integer> classes;
-
-    private final ThreadLocal<Kryo> threadLocalKryo;
 
     public KryoObjectSerializer() {
         this.classes = new ConcurrentHashMap<Class<?>, Integer>();

@@ -5,7 +5,7 @@ import com.google.inject.Scopes;
 import dev.westernpine.beatbox.utilities.configuration.config.IConfig;
 import dev.westernpine.beatbox.utilities.configuration.config.imp.DefaultConfig;
 import dev.westernpine.beatbox.utilities.configuration.configeditor.IConfigEditor;
-import dev.westernpine.beatbox.utilities.configuration.configeditor.Imp.YamlConfigEditor;
+import dev.westernpine.beatbox.utilities.configuration.configeditor.imp.YamlConfigEditor;
 
 public class ConfigurationModule extends AbstractModule {
 

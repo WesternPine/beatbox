@@ -1,4 +1,4 @@
-package dev.westernpine.beatbox.utilities.configuration.configeditor.Imp;
+package dev.westernpine.beatbox.utilities.configuration.configeditor.imp;
 
 import dev.westernpine.beatbox.utilities.configuration.configeditor.IConfigEditor;
 import org.yaml.snakeyaml.DumperOptions;

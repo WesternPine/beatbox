@@ -10,13 +10,15 @@ public class Main {
 
     // Single instance of main.
     private static Main INSTANCE;
+
+    // Main instance of Injector.
+    public final Injector injector;
+
     public static void main(String[] args) {
         if(INSTANCE != null)
             throw new UnsupportedOperationException("The instance has already been initialized.");
         INSTANCE = new Main();
     }
-
-    public final Injector injector;
 
     public Main() {
         this.injector = Guice.createInjector(
