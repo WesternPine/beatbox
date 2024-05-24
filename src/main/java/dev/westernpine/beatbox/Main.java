@@ -2,9 +2,9 @@ package dev.westernpine.beatbox;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import dev.westernpine.beatbox.Modules.ManagerModule;
-import dev.westernpine.beatbox.Modules.SerializerModule;
-import dev.westernpine.beatbox.Modules.ConfigurationModule;
+import dev.westernpine.beatbox.modules.ManagerModule;
+import dev.westernpine.beatbox.modules.SerializerModule;
+import dev.westernpine.beatbox.modules.ConfigurationModule;
 
 public class Main {
 
