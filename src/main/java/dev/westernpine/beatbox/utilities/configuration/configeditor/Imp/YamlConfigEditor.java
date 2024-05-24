@@ -44,15 +44,11 @@ public class YamlConfigEditor implements IConfigEditor {
     }
 
     @Override
-    public void write(OutputStream outputStream, String data) {
-        try {
-            try(OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream)) {
-                try(BufferedWriter writer = new BufferedWriter(outputStreamWriter)) {
-                    writer.write(data);
-                }
+    public void write(OutputStream outputStream, String data) throws IOException {
+        try(OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream)) {
+            try(BufferedWriter writer = new BufferedWriter(outputStreamWriter)) {
+                writer.write(data);
             }
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
         }
     }
 

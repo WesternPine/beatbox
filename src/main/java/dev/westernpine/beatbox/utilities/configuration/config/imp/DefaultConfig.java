@@ -34,7 +34,7 @@ public class DefaultConfig implements IConfig {
             try {
                 this.save();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                handleSaveException(e);
             }
         });
     }
@@ -67,8 +67,17 @@ public class DefaultConfig implements IConfig {
         File file = getFile();
         file.createNewFile();
         String dump = this.configEditor.dump(this.configuration);
-        FileUtilities.acceptOutputStream(file, os -> this.configEditor.write(os, dump));
+        FileUtilities.acceptOutputStream(file, os -> {
+            try {
+                this.configEditor.write(os, dump);
+            } catch (IOException e) {
+                handleSaveException(e);
+            }
+        });
     }
 
+    public void handleSaveException(IOException e) {
+        System.out.printf("Unable to save config file!%n%s%n", e.getMessage());
+    }
 
 }
