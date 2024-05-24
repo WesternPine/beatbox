@@ -1,6 +1,6 @@
-package dev.westernpine.beatbox.Utilities.Serializer.Object;
+package dev.westernpine.beatbox.Utilities.Serializer.Binary;
 
-public interface IObjectSerializer {
+public interface IBinarySerializer {
 
     public <T> byte[] serialize(T deserialized);
 
