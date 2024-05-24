@@ -10,24 +10,23 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 
-import java.io.IOException;
-
 public class Main {
 
     // Single instance of main.
     private static Main INSTANCE;
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         if(INSTANCE != null)
             throw new UnsupportedOperationException("The instance has already been initialized.");
         INSTANCE = new Main(args);
     }
+
     public static Main get() {
         return INSTANCE;
     }
 
     public final Injector injector;
 
-    public Main(String[] args) throws IOException {
+    public Main(String[] args) {
         this.injector = Guice.createInjector(
                 new ConfigurationModule(),
                 new SerializerModule()
