@@ -21,7 +21,13 @@ public class DefaultConfig implements IConfig {
     public DefaultConfig(IConfigEditor configEditor) throws IOException {
         this.configEditor = configEditor;
         this.configuration = new Configuration();
+
         load();
+
+        if(configuration.configGenerated) {
+            System.out.printf("Configuration generated! (%s)%n", getFileName());
+            System.exit(0);
+        }
     }
 
     public Configuration get() {
