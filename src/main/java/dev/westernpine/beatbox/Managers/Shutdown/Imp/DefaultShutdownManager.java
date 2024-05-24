@@ -10,12 +10,11 @@ public class DefaultShutdownManager implements IShutdownManager {
     private final Stack<Runnable> shutdownActions;
 
     public DefaultShutdownManager() {
-        shutdownActions = new Stack<>();
+        this.shutdownActions = new Stack<>();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            Runnable action;
-            while((action = shutdownActions.pop()) != null) {
+            while(!this.shutdownActions.isEmpty()) {
                 try {
-                    action.run();
+                    this.shutdownActions.pop().run();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -1,6 +1,7 @@
 package dev.westernpine.beatbox.Utilities.Configuration.Config.Imp;
 
 import com.google.inject.Inject;
+import dev.westernpine.beatbox.Managers.Shutdown.IShutdownManager;
 import dev.westernpine.beatbox.Models.Configuration.Configuration;
 import dev.westernpine.beatbox.Utilities.Configuration.Config.IConfig;
 import dev.westernpine.beatbox.Utilities.Configuration.ConfigEditor.IConfigEditor;
@@ -18,7 +19,7 @@ public class DefaultConfig implements IConfig {
     public Configuration configuration;
 
     @Inject
-    public DefaultConfig(IConfigEditor configEditor) throws IOException {
+    public DefaultConfig(IConfigEditor configEditor, IShutdownManager shutdownManager) throws IOException {
         this.configEditor = configEditor;
         this.configuration = new Configuration();
 
@@ -28,6 +29,14 @@ public class DefaultConfig implements IConfig {
             System.out.printf("Configuration generated! (%s)%n", getFileName());
             System.exit(0);
         }
+
+        shutdownManager.add("DefaultConfig", () -> {
+            try {
+                this.save();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public Configuration get() {
