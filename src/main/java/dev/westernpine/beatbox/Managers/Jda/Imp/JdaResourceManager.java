@@ -5,6 +5,7 @@ import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.libraries.jda.JDAVoiceUpdateListener;
 import dev.westernpine.beatbox.Managers.Jda.IJdaResourceManager;
 import dev.westernpine.beatbox.Managers.LavaLink.ILavalinkManager;
+import dev.westernpine.beatbox.Managers.Shutdown.IShutdownManager;
 import dev.westernpine.beatbox.Models.Configuration.Configuration;
 import dev.westernpine.beatbox.Utilities.Configuration.Config.IConfig;
 import net.dv8tion.jda.api.JDA;
@@ -27,7 +28,7 @@ public class JdaResourceManager implements IJdaResourceManager {
     private final JDA jda;
 
     @Inject
-    public JdaResourceManager(IConfig config, ILavalinkManager lavalinkManager) {
+    public JdaResourceManager(IConfig config, ILavalinkManager lavalinkManager, IShutdownManager shutdownManager) {
         Configuration configuration = config.get();
         LavalinkClient client = lavalinkManager.get();
         jda = JDABuilder
@@ -35,6 +36,8 @@ public class JdaResourceManager implements IJdaResourceManager {
                 .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(client)) // See lavalink documentation for voice channels and guild audio manager.
                 .build();
         jda.getPresence().setActivity(Activity.customStatus(configuration.activity));
+
+        shutdownManager.add("JDA Command Cleanup", () -> jda.updateCommands().queue());
     }
 
     @Override
