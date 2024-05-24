@@ -1,8 +1,8 @@
 package dev.westernpine.beatbox.Modules;
 
 import com.google.inject.AbstractModule;
-import dev.westernpine.beatbox.Managers.Discord.Jda.IJdaResourceManager;
-import dev.westernpine.beatbox.Managers.Discord.Jda.Imp.JdaResourceManager;
+import dev.westernpine.beatbox.Managers.Jda.IJdaResourceManager;
+import dev.westernpine.beatbox.Managers.Jda.Imp.JdaResourceManager;
 
 public class ManagerModule extends AbstractModule {
 

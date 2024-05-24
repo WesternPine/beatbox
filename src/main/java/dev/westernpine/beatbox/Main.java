@@ -22,7 +22,7 @@ public class Main {
         this.injector = Guice.createInjector(
                 new ConfigurationModule(),
                 new SerializerModule(),
-                new ManagerModule()
+                new ManagerModule() // This contains the start point of the app. IJdaResourceManager specifically.
         );
 
     }
