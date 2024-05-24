@@ -22,6 +22,7 @@
         <guiceVersion>7.0.0</guiceVersion>
         <guavaVersion>32.1.0-jre</guavaVersion>
         <jdaVersion>5.0.0-beta.24</jdaVersion>
+        <lavalinkVersion>3.0.0</lavalinkVersion>
         <gsonVersion>2.10.1</gsonVersion>
         <snakeYamlVersion>2.1</snakeYamlVersion>
         <kryoVersion>5.6.0</kryoVersion>
@@ -67,6 +68,11 @@
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>${jdaVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.arbjerg</groupId>
+            <artifactId>lavalink-client</artifactId>
+            <version>${lavalinkVersion}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

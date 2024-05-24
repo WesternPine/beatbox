@@ -14,4 +14,6 @@ public class Configuration {
      */
     public String requiredDiscordToken = "SomeRequiredTokenString";
 
+    public String activity = "Coming Soon? o.0";
+
 }
