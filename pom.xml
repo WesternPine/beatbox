@@ -27,7 +27,7 @@
         <snakeYamlVersion>2.1</snakeYamlVersion>
         <kryoVersion>5.6.0</kryoVersion>
         <jsoupVersion>1.17.2</jsoupVersion>
-        <eventsVersion>d6ba7a1141</eventsVersion>
+        <eventsVersion>3c6f4fc231</eventsVersion>
     </properties>
 
     <repositories>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>com.github.WesternPine</groupId>
             <artifactId>Events</artifactId>
-            <version>d6ba7a1141</version>
+            <version>${eventsVersion}</version>
         </dependency>
     </dependencies>
 
