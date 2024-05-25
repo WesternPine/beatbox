@@ -4,12 +4,12 @@ import com.google.inject.Inject;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.libraries.jda.JDAVoiceUpdateListener;
 import dev.westernpine.beatbox.events.RegisterJdaCommandsEvent;
+import dev.westernpine.beatbox.handlers.jda.imp.JdaEventHandler;
 import dev.westernpine.beatbox.managers.jda.IJdaResourceManager;
 import dev.westernpine.beatbox.managers.lavalink.ILavalinkManager;
 import dev.westernpine.beatbox.managers.shutdown.IShutdownManager;
 import dev.westernpine.beatbox.models.configuration.Configuration;
 import dev.westernpine.beatbox.utilities.configuration.config.IConfig;
-import dev.westernpine.events.manager.DefaultEventManager;
 import dev.westernpine.events.manager.IEventManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -23,7 +23,6 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.components.ItemComponent;
 import net.dv8tion.jda.api.interactions.components.LayoutComponent;
 import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +42,7 @@ public class JdaResourceManager implements IJdaResourceManager {
         jda = JDABuilder
                 .createDefault(configuration.requiredDiscordToken)
                 .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(client)) // See lavalink documentation for voice channels and guild audio manager.
+                .addEventListeners(new JdaEventHandler(eventManager))
                 .build();
         jda.getPresence().setActivity(Activity.customStatus(configuration.activity));
         shutdownManager.add("JDA Command Cleanup", () -> jda.updateCommands().queue());

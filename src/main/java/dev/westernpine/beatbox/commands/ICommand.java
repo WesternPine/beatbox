@@ -6,10 +6,10 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 
 public interface ICommand {
 
-    public CommandData getCommandData();
+    CommandData getCommandData();
 
     @EventHandler
-    public default void registerCommandHandler(RegisterJdaCommandsEvent event) {
+    default void registerCommandHandler(RegisterJdaCommandsEvent event) {
         event.jdaResourceManager().registerCommandData(getCommandData());
     }
 
