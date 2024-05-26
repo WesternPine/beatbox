@@ -30,6 +30,10 @@ public class Main {
         INSTANCE = new Main();
     }
 
+    public static Main getInstance() {
+        return INSTANCE;
+    }
+
     public Main() throws URISyntaxException {
         IEventManager eventManager = new DefaultEventManager(true);
         this.registerJarEventListeners(eventManager);

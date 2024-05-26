@@ -35,20 +35,53 @@ public class JdaResourceManager implements IJdaResourceManager {
 
     private final List<CommandData> commandsToRegister = new ArrayList<>();
 
+    private final IConfig config;
+
+    private final ILavalinkManager lavalinkManager;
+
+    private final IShutdownManager shutdownManager;
+
+    private final IEventManager eventManager;
+
     @Inject
     public JdaResourceManager(IConfig config, ILavalinkManager lavalinkManager, IShutdownManager shutdownManager, IEventManager eventManager) {
+        this.config = config;
+        this.lavalinkManager = lavalinkManager;
+        this.shutdownManager = shutdownManager;
+        this.eventManager = eventManager;
+
         Configuration configuration = config.get();
         LavalinkClient client = lavalinkManager.get();
         jda = JDABuilder
                 .createDefault(configuration.requiredDiscordToken)
                 .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(client)) // See lavalink documentation for voice channels and guild audio manager.
-                .addEventListeners(new JdaEventHandler(eventManager))
+                .addEventListeners(new JdaEventHandler(this))
                 .build();
         jda.getPresence().setActivity(Activity.customStatus(configuration.activity));
         shutdownManager.add("JDA Command Cleanup", () -> jda.updateCommands().queue());
         eventManager.call(new RegisterJdaCommandsEvent(this));
         if(!commandsToRegister.isEmpty())
-            jda.updateCommands().addCommands(commandsToRegister).queue();
+            jda.updateCommands().addCommands(commandsToRegister).complete();
+    }
+
+    @Override
+    public IConfig getConfig() {
+        return config;
+    }
+
+    @Override
+    public IEventManager getEventManager() {
+        return eventManager;
+    }
+
+    @Override
+    public IShutdownManager getShutdownManager() {
+        return shutdownManager;
+    }
+
+    @Override
+    public ILavalinkManager getLavalinkManager() {
+        return lavalinkManager;
     }
 
     @Override

@@ -2,6 +2,7 @@ package dev.westernpine.beatbox.handlers.jda.imp;
 
 import dev.westernpine.beatbox.events.SlashCommandEvent;
 import dev.westernpine.beatbox.handlers.jda.IJdaEventHandler;
+import dev.westernpine.beatbox.managers.jda.IJdaResourceManager;
 import dev.westernpine.events.manager.IEventManager;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -9,10 +10,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class JdaEventHandler extends ListenerAdapter implements IJdaEventHandler {
 
-    private final IEventManager eventManager;
+    private final IJdaResourceManager jdaResourceManager;
 
-    public JdaEventHandler(IEventManager eventManager) {
-        this.eventManager = eventManager;
+    public JdaEventHandler(IJdaResourceManager jdaResourceManager) {
+        this.jdaResourceManager = jdaResourceManager;
     }
 
     /**
@@ -21,7 +22,7 @@ public class JdaEventHandler extends ListenerAdapter implements IJdaEventHandler
      */
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-        eventManager.call(new SlashCommandEvent(event)); //
+        jdaResourceManager.getEventManager().call(new SlashCommandEvent(event, jdaResourceManager)); //
     }
 
 }
