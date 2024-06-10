@@ -4,13 +4,28 @@
 [![GitHub Build](https://github.com/WesternPine/beatbox/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/WesternPine/beatbox/actions/workflows/build.yml)
 [![JitPack](https://jitpack.io/v/WesternPine/beatbox.svg)](https://jitpack.io/#WesternPine/beatbox)
 
-Beatbox is a Discord-based music app where you can enjoy music together with friends without ads.
-Its inspiration was derived from another project I did during covid lockdowns (Pulse Bot) where my only escape was the
-extent of my creativity. Today, it serves as a passion project to explore new technologies and to further refine my skills
-and abilities as a programmer. With that being said, it may not be the most feature-packed app, 
-but it does have some hidden gems for you developers out there!
+Beatbox is a Discord-based music app where you can enjoy music together with friends.
 
-## Getting started
+Its inspiration was derived from another project I did during covid lockdowns (Pulse Bot) where my only escape was the
+extent of my creativity. Today, it serves as proof of programming capability and a base project with a simplistic design that can be expanded upon
+for other development projects.
+
+## Notes
+
+This project has been replicated in so many different ways, this was just my personal twist.
+
+I don't feel the desire to pursue creating a fully featured bot that will inevitably be removed by DMCA, 
+so instead this is a shell/base project that can be used by developers to start their own project to learn about things like
+reflections, dependency injection, APIs, build systems, pipelines, and streams. 
+It covers a broad range of both beginning and advanced topics that all programmers should cover in their careers at least once.
+
+## Getting Started (User Guide)
+
+- Join the test server: https://discord.gg/gWvDT3j2fD
+- Use `/play`
+- Enjoy!
+
+## Getting started (Developer Guide)
 
 - Download the project.
 - (Optional) Build it.
@@ -32,7 +47,3 @@ but it does have some hidden gems for you developers out there!
 - [google - gson](https://github.com/google/gson)
 - [jhy - Jsoup](https://github.com/jhy/jsoup)
 - [snakeyaml - snakeyaml](https://github.com/snakeyaml/snakeyaml)
-
-## Features
-
-- Coming Soon!
