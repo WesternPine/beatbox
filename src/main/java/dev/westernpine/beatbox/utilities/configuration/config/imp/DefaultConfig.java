@@ -1,16 +1,21 @@
 package dev.westernpine.beatbox.utilities.configuration.config.imp;
 
 import com.google.inject.Inject;
+import dev.westernpine.beatbox.handlers.ll.imp.LlEventHandler;
 import dev.westernpine.beatbox.managers.shutdown.IShutdownManager;
 import dev.westernpine.beatbox.models.configuration.Configuration;
 import dev.westernpine.beatbox.utilities.configuration.config.IConfig;
 import dev.westernpine.beatbox.utilities.configuration.configeditor.IConfigEditor;
 import dev.westernpine.beatbox.utilities.FileUtilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 public class DefaultConfig implements IConfig {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultConfig.class);
 
     public static final String CONFIGFILE = "settings.conf";
 
@@ -26,7 +31,7 @@ public class DefaultConfig implements IConfig {
         load();
 
         if(configuration.configGenerated) {
-            System.out.printf("Configuration generated! (%s)%n", getFileName());
+            LOGGER.info("Configuration generated! (%s)".formatted(getFileName()));
             System.exit(0);
         }
 
@@ -77,7 +82,8 @@ public class DefaultConfig implements IConfig {
     }
 
     public void handleSaveException(IOException e) {
-        System.out.printf("Unable to save config file!%n%s%n", e.getMessage());
+        LOGGER.warn("Unable to save config file!");
+        LOGGER.warn(e.getMessage());
     }
 
 }

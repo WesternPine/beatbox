@@ -16,16 +16,11 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
 import net.dv8tion.jda.api.entities.channel.unions.AudioChannelUnion;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
-import net.dv8tion.jda.api.interactions.components.ItemComponent;
-import net.dv8tion.jda.api.interactions.components.LayoutComponent;
-import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -102,16 +97,6 @@ public class JdaResourceManager implements IJdaResourceManager {
     @Override
     public Optional<AudioChannelUnion> getAudioChannel(Guild guild) {
         return Optional.ofNullable(guild.getSelfMember().getVoiceState()).map(GuildVoiceState::getChannel);
-    }
-
-    @Override
-    public MessageCreateAction sendMessage(TextChannel textChannel, Collection<? extends LayoutComponent> layoutComponents) {
-        return textChannel.sendMessageComponents(layoutComponents);
-    }
-
-    @Override
-    public MessageCreateAction addActionRow(MessageCreateAction messageCreateAction, Collection<? extends ItemComponent> itemComponents) {
-        return messageCreateAction.addActionRow(itemComponents);
     }
 
 }

@@ -33,8 +33,4 @@ public interface IJdaResourceManager {
     void disconnect(Guild guild);
 
     Optional<AudioChannelUnion> getAudioChannel(Guild guild);
-
-    MessageCreateAction sendMessage(TextChannel textChannel, Collection<? extends LayoutComponent> layoutComponents);
-
-    MessageCreateAction addActionRow(MessageCreateAction messageCreateAction, Collection<? extends ItemComponent> itemComponents);
 }

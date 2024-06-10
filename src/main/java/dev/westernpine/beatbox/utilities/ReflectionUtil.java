@@ -1,6 +1,9 @@
 package dev.westernpine.beatbox.utilities;
 
+import dev.westernpine.beatbox.handlers.ll.imp.LlEventHandler;
 import dev.westernpine.beatbox.modules.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +15,8 @@ import java.util.jar.JarFile;
 import java.util.stream.Stream;
 
 public class ReflectionUtil {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionUtil.class);
 
     /**
      * Get the file path of a jar file containing the class from a given class type.
@@ -48,9 +53,9 @@ public class ReflectionUtil {
                         .map(absPath -> absPath.replace(path, "").substring(1))
                 ;
             } catch (Exception ex) {
-                System.out.println("Unable to load any classes!");
-                System.out.println(e.getMessage());
-                System.out.println(ex.getMessage());
+                LOGGER.warn("Unable to load any classes!");
+                LOGGER.warn(e.getMessage());
+                LOGGER.warn(ex.getMessage());
             }
         }
         return names

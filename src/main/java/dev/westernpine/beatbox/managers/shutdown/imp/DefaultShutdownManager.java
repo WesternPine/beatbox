@@ -1,10 +1,15 @@
 package dev.westernpine.beatbox.managers.shutdown.imp;
 
+import dev.westernpine.beatbox.handlers.ll.imp.LlEventHandler;
 import dev.westernpine.beatbox.managers.shutdown.IShutdownManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Stack;
 
 public class DefaultShutdownManager implements IShutdownManager {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultShutdownManager.class);
 
     // Stack for proper deque.
     private final Stack<Runnable> shutdownActions;
@@ -23,9 +28,9 @@ public class DefaultShutdownManager implements IShutdownManager {
     }
 
     public void add(String title, Runnable runnable) {
-        System.out.printf("Adding shutdown hook: %s%n", title);
+        LOGGER.info("Adding shutdown hook: %s".formatted(title));
         this.shutdownActions.add(() -> {
-            System.out.printf("Executing shutdown hook: %s%n", title);
+            LOGGER.info("Executing shutdown hook: %s".formatted(title));
             runnable.run();
         });
     }
