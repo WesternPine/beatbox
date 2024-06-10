@@ -37,7 +37,7 @@ public class YamlConfigEditor implements IConfigEditor {
     }
 
     @Override
-    public <T> T read(InputStream inputStream) {
+    public <T> T read(InputStream inputStream, Class<T> type) {
         T result;
         result = yaml.load(inputStream);
         return (T) result;

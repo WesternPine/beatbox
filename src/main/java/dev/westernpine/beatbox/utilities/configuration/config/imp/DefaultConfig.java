@@ -64,7 +64,15 @@ public class DefaultConfig implements IConfig {
             save();
             configGenerated = true;
         }
-        this.configuration = FileUtilities.handleInputStream(file, this.configEditor::read);
+        this.configuration = FileUtilities.handleInputStream(file, is -> {
+            try {
+                return this.configEditor.read(is, Configuration.class);
+            } catch (IOException e) {
+                handleLoadException(e);
+            }
+            LOGGER.info("Using default configuration.");
+            return new Configuration();
+        });
         this.configuration.configGenerated = configGenerated;
     }
 
@@ -79,6 +87,11 @@ public class DefaultConfig implements IConfig {
                 handleSaveException(e);
             }
         });
+    }
+
+    public void handleLoadException(IOException e) {
+        LOGGER.warn("Unable to load config file!");
+        LOGGER.warn(e.getMessage());
     }
 
     public void handleSaveException(IOException e) {
