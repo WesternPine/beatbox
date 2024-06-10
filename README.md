@@ -1,4 +1,4 @@
-# beatbox
+# BeatBox
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a3b012e6b6dc4c9fb7898bd0e3e68271)](https://app.codacy.com/gh/WesternPine/beatbox/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![GitHub Build](https://github.com/WesternPine/beatbox/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/WesternPine/beatbox/actions/workflows/build.yml)
@@ -12,7 +12,7 @@ for other development projects.
 
 ## Notes
 
-This project has been replicated in so many different ways, this was just my personal twist.
+This project has been replicated in so many different ways, this was just my personal twist on how I would start something like this.
 
 I don't feel the desire to pursue creating a fully featured bot that will inevitably be removed by DMCA, 
 so instead this is a shell/base project that can be used by developers to start their own project to learn about things like
