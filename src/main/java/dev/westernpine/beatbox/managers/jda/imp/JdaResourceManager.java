@@ -53,7 +53,7 @@ public class JdaResourceManager implements IJdaResourceManager {
                 .addEventListeners(new JdaEventHandler(this))
                 .build();
         jda.getPresence().setActivity(Activity.customStatus(configuration.activity));
-        shutdownManager.add("JDA Command Cleanup", () -> jda.updateCommands().queue());
+        shutdownManager.add("JDA Command Cleanup", () -> jda.updateCommands().complete());
         eventManager.call(new RegisterJdaCommandsEvent(this));
         if(!commandsToRegister.isEmpty())
             jda.updateCommands().addCommands(commandsToRegister).complete();

@@ -20,7 +20,11 @@ public class LavalinkClientManager implements ILavalinkManager {
     @Inject
     public LavalinkClientManager(IConfig config, IShutdownManager shutdownManager) throws URISyntaxException, MalformedURLException {
         client = new LavalinkClient(Helpers.getUserIdFromToken(config.get().requiredDiscordToken));
-        client.addNode(new NodeOptions.Builder().setName("Home").setServerUri("http://10.0.0.6:2333").setPassword("youshallnotpass").build());
+        config.get().llNodes.forEach(node ->
+                client.addNode(
+                        new NodeOptions.Builder().setName(node.getName()).setServerUri(node.getUrl()).setPassword(node.getPassword()).build()
+                )
+        );
         shutdownManager.add("LavaLink Client", client::close);
     }
 
