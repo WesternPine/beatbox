@@ -21,7 +21,6 @@ It covers a broad range of both beginning and advanced topics that all programme
 
 ## Getting Started (User Guide)
 
-- Join the test server: https://discord.gg/gWvDT3j2fD
 - Use `/play`
 - Enjoy!
 
